@@ -1,0 +1,27 @@
+{
+  "name": "finance",
+  "version": "1.0.0",
+  "description": "Software pemasukan, pengeluaran, dan total profit dengan export Excel — React + Express",
+  "main": "server.js",
+  "scripts": {
+    "postinstall": "npm --prefix client install",
+    "start": "node server.js",
+    "dev": "node server.js",
+    "dev:client": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "prod": "npm run build && npm start"
+  },
+  "keywords": [
+    "finance",
+    "pemasukan",
+    "pengeluaran",
+    "profit",
+    "excel",
+    "react"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "express": "^5.2.1"
+  }
+}

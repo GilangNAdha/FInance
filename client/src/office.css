@@ -1,0 +1,705 @@
+/* ===== Styles untuk Office suite (Doc / Excel / PDF editor) ===== */
+
+/* Layout halaman office */
+.office-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.office-hero {
+  padding: 26px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.office-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(500px 160px at 90% -40%, rgba(37, 99, 235, 0.16), transparent 60%),
+    radial-gradient(360px 140px at 0% 130%, rgba(124, 58, 237, 0.1), transparent 60%);
+  pointer-events: none;
+}
+.office-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.office-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  width: fit-content;
+  box-shadow: var(--shadow);
+}
+.office-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 700;
+  padding: 9px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  text-decoration: none;
+}
+.office-tab:hover {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.7);
+}
+.office-tab.active {
+  background: linear-gradient(135deg, var(--blue), #4f46e5);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.38);
+}
+
+/* Kartu launcher (gaya GenOffice home) */
+.launcher-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+}
+.launch-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  text-align: left;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  background: var(--glass);
+  backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: var(--shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  color: var(--ink);
+  font-family: inherit;
+}
+.launch-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.launch-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 1.1rem;
+}
+.launch-icon.word {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
+}
+.launch-icon.sheet {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  box-shadow: 0 8px 18px rgba(22, 163, 74, 0.35);
+}
+.launch-icon.pdf {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  box-shadow: 0 8px 18px rgba(220, 38, 38, 0.32);
+}
+.launch-icon.md {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  box-shadow: 0 8px 18px rgba(124, 58, 237, 0.32);
+}
+.launch-card h3 {
+  font-size: 1rem;
+  font-weight: 800;
+}
+.launch-card p {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.45;
+  flex: 1;
+}
+.launch-meta {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Drop zone */
+.dropzone {
+  border: 2px dashed rgba(37, 99, 235, 0.35);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  padding: 30px 20px;
+  text-align: center;
+  transition: all 0.18s ease;
+  cursor: pointer;
+}
+.dropzone:hover,
+.dropzone.dragover {
+  border-color: var(--blue);
+  background: rgba(37, 99, 235, 0.06);
+  transform: translateY(-2px);
+}
+.dropzone-icon {
+  font-size: 2rem;
+  margin-bottom: 6px;
+}
+.dropzone strong {
+  display: block;
+  font-size: 0.95rem;
+}
+.dropzone span {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* Toolbar editor */
+.editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+}
+.tb-btn {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 9px;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 8px;
+  color: var(--ink-2);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-grid;
+  place-items: center;
+  transition: all 0.12s ease;
+  font-family: inherit;
+}
+.tb-btn:hover {
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--blue);
+  border-color: rgba(37, 99, 235, 0.25);
+}
+.tb-btn.active {
+  background: var(--blue);
+  color: #fff;
+}
+.tb-sep {
+  width: 1px;
+  height: 22px;
+  background: rgba(148, 163, 184, 0.4);
+  margin: 0 4px;
+}
+.tb-select {
+  height: 32px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  padding: 0 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+}
+.tb-fileinput {
+  display: none;
+}
+
+/* Area teks dokumen */
+.doc-canvas-wrap {
+  background: #fff;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.doc-status {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  padding: 8px 14px;
+  background: rgba(241, 245, 249, 0.8);
+  border-top: 1px solid var(--border, #e2e8f0);
+  flex-wrap: wrap;
+}
+.doc-canvas {
+  min-height: 480px;
+  max-height: 62vh;
+  overflow-y: auto;
+  padding: 44px 52px;
+  outline: none;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #1e293b;
+  background:
+    linear-gradient(90deg, transparent 51px, #e2e8f0 51px, #e2e8f0 52px, transparent 52px),
+    #fff;
+  background-attachment: local;
+}
+.doc-canvas:empty::before {
+  content: attr(data-placeholder);
+  color: #94a3b8;
+  font-style: italic;
+}
+.doc-canvas h1 {
+  font-size: 1.9rem;
+  margin: 0.6em 0 0.4em;
+  color: #0f172a;
+}
+.doc-canvas h2 {
+  font-size: 1.45rem;
+  margin: 0.55em 0 0.35em;
+  color: #0f172a;
+}
+.doc-canvas h3 {
+  font-size: 1.2rem;
+  margin: 0.5em 0 0.3em;
+}
+.doc-canvas p {
+  margin: 0.5em 0;
+}
+.doc-canvas ul,
+.doc-canvas ol {
+  margin: 0.5em 0;
+  padding-left: 1.6em;
+}
+.doc-canvas blockquote {
+  border-left: 3px solid var(--blue);
+  margin: 0.7em 0;
+  padding: 0.3em 0 0.3em 1em;
+  color: #475569;
+  font-style: italic;
+  background: rgba(37, 99, 235, 0.04);
+}
+.doc-canvas table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.7em 0;
+}
+.doc-canvas table td,
+.doc-canvas table th {
+  border: 1px solid #cbd5e1;
+  padding: 7px 10px;
+  font-size: 0.92em;
+}
+.doc-canvas a {
+  color: var(--blue);
+}
+.doc-canvas hr {
+  border: none;
+  border-top: 2px solid #e2e8f0;
+  margin: 1.2em 0;
+}
+.doc-canvas pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 12px 14px;
+  border-radius: 10px;
+  overflow-x: auto;
+  font-size: 0.86em;
+}
+
+/* Spreadsheet */
+.sheet-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.sheet-toolbar .btn {
+  padding: 8px 14px;
+  font-size: 0.8rem;
+}
+.fx-bar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow);
+}
+.fx-label {
+  padding: 9px 12px;
+  font-weight: 800;
+  font-style: italic;
+  color: var(--blue);
+  background: rgba(37, 99, 235, 0.08);
+  border-right: 1px solid var(--glass-border);
+  font-size: 0.85rem;
+}
+.fx-cellname {
+  padding: 9px 12px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  min-width: 64px;
+  text-align: center;
+  border-right: 1px solid var(--glass-border);
+  font-variant-numeric: tabular-nums;
+}
+.fx-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 9px 12px;
+  font-size: 0.88rem;
+  font-family: 'SF Mono', 'Fira Code', ui-monospace, monospace;
+  background: transparent;
+  min-width: 120px;
+}
+
+.sheet-wrap {
+  overflow: auto;
+  max-height: 58vh;
+  background: #fff;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-lg);
+}
+.sheet-grid {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.82rem;
+  min-width: 100%;
+}
+.sheet-grid th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: linear-gradient(180deg, #f8fafc, #eef2f7);
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.7rem;
+  padding: 0;
+  border-right: 1px solid #e2e8f0;
+  border-bottom: 2px solid #cbd5e1;
+  user-select: none;
+  min-width: 88px;
+  height: 26px;
+}
+.sheet-grid th.row-h {
+  left: 0;
+  z-index: 4;
+  min-width: 44px;
+  width: 44px;
+  text-align: center;
+}
+.sheet-grid th.corner {
+  left: 0;
+  z-index: 5;
+  min-width: 44px;
+  width: 44px;
+}
+.sheet-grid td {
+  border-right: 1px solid #eef2f7;
+  border-bottom: 1px solid #eef2f7;
+  padding: 0;
+  height: 30px;
+  min-width: 88px;
+  background: #fff;
+}
+.sheet-grid td.row-h {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: linear-gradient(90deg, #f8fafc, #eef2f7);
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-align: center;
+  min-width: 44px;
+  width: 44px;
+  user-select: none;
+}
+.sheet-cell {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding: 5px 8px;
+  font-size: 0.82rem;
+  font-family: inherit;
+  background: transparent;
+  color: var(--ink);
+}
+.sheet-cell:focus,
+.sheet-td.selected {
+  outline: 2px solid var(--blue);
+  outline-offset: -2px;
+  position: relative;
+  z-index: 1;
+  background: rgba(37, 99, 235, 0.04);
+}
+.sheet-td.selected {
+  background: rgba(37, 99, 235, 0.07);
+}
+.sheet-cell.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.sheet-tabs {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+.sheet-tab {
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(10px);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  cursor: pointer;
+}
+.sheet-tab.active {
+  background: linear-gradient(135deg, var(--green), #15803d);
+  color: #fff;
+  border-color: transparent;
+}
+
+/* PDF editor */
+.pdf-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.pdf-sidebar {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.pdf-file-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid var(--glass-border);
+  cursor: pointer;
+  transition: all 0.12s ease;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.pdf-file-item:hover,
+.pdf-file-item.active {
+  border-color: rgba(220, 38, 38, 0.45);
+  background: rgba(220, 38, 38, 0.06);
+}
+.pdf-file-item .pf-ico {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.pdf-file-item .pf-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pdf-file-item .pf-remove {
+  border: none;
+  background: transparent;
+  color: var(--muted-2, #94a3b8);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0 2px;
+}
+.pdf-file-item .pf-remove:hover {
+  color: var(--red);
+}
+
+.pdf-stage {
+  padding: 18px;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.pdf-canvas-frame {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.18);
+  overflow: hidden;
+  max-width: 100%;
+}
+.pdf-canvas-frame canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.pdf-page-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.pdf-empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 60px 20px;
+}
+.pdf-empty .big {
+  font-size: 3rem;
+  margin-bottom: 8px;
+}
+
+/* Integrasi luar (GenOffice / MS-365) */
+.ext-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.ext-card {
+  padding: 18px 20px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  transition: transform 0.15s ease;
+}
+.ext-card:hover {
+  transform: translateY(-3px);
+}
+.ext-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 0.72rem;
+  color: #fff;
+  flex-shrink: 0;
+  text-align: center;
+  line-height: 1.1;
+}
+.ext-badge.go {
+  background: linear-gradient(135deg, #0ea5e9, #6366f1);
+}
+.ext-badge.ms {
+  background: linear-gradient(135deg, #f97316, #dc2626);
+}
+.ext-card h4 {
+  font-size: 0.92rem;
+  font-weight: 800;
+  margin-bottom: 3px;
+}
+.ext-card p {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.ext-card a.ext-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+/* Quick actions hub */
+.quick-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.office-section-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 4px;
+}
+.office-section-title h2 {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+.office-section-title p {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* Editor header bar */
+.editor-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.editor-title-input {
+  border: 1.5px solid transparent;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--ink);
+  min-width: 220px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.editor-title-input:focus {
+  border-color: var(--blue-2, #3b82f6);
+  background: #fff;
+}
+.editor-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .pdf-layout {
+    grid-template-columns: 1fr;
+  }
+  .ext-grid {
+    grid-template-columns: 1fr;
+  }
+  .doc-canvas {
+    padding: 28px 22px;
+    background: #fff;
+  }
+}
